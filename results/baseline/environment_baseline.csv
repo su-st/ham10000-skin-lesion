@@ -1,0 +1,7 @@
+﻿,規格
+執行平台,Google Colab
+硬體,CPU（2 核心）
+程式語言,Python 3.13.18
+主要套件與版本,scikit-learn 1.6.1、scikit-image 0.25.2、NumPy 2.4.6、pandas 2.2.3
+隨機種子,42、43、44、45、46
+選定參數,"{""SVM"": {""C"": 1, ""gamma"": 0.0001}, ""Random Forest"": {""max_depth"": 10, ""min_samples_leaf"": 5, ""class_weight"": ""balanced_subsample""}}"

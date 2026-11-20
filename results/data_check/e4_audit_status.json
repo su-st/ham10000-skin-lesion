@@ -1,0 +1,19 @@
+{
+  "e4_ready_for_provisional_evaluation": true,
+  "e4_status": "archive_lesion_metadata_complete_and_il_mapping_valid",
+  "exclusion_rule": "same image_id OR same archive lesion_id (IL) OR (pHash <= 6 AND SSIM >= 0.90)",
+  "sensitivity_rule": "main rule OR pHash <= 6",
+  "phash_threshold": 6,
+  "ssim_threshold": 0.9,
+  "il_mapping_one_to_one": true,
+  "e4_image_count": 1705,
+  "e4_kept_count_main": 1704,
+  "e4_kept_count_sensitivity": 1595,
+  "counts": {
+    "ham_metadata_coverage": 10015,
+    "external_metadata_coverage": 1705,
+    "ham_lesion_coverage": 10015,
+    "external_lesion_coverage": 1705
+  },
+  "note": "Lesion-level overlap is checked with ISIC archive lesion IDs. Complete metadata does not prove the absence of every near-duplicate photo."
+}

@@ -1,0 +1,2 @@
+﻿image_a,image_b,lesion_a,lesion_b,dx_a,dx_b,distance,ssim
+ISIC_0025226,ISIC_0030074,HAM_0004919,HAM_0000140,nv,nv,2,0.9521485771995077

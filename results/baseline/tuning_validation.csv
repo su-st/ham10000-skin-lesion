@@ -1,0 +1,31 @@
+﻿模型,參數,驗證集 macro-F1,驗證集黑色素瘤召回率,訓練秒數
+SVM,"{""C"": 0.1, ""gamma"": ""scale""}",0.2351702720938906,0.2832369942196532,240.7
+SVM,"{""C"": 0.1, ""gamma"": 0.001}",0.23425752633952032,0.17341040462427745,259.3
+SVM,"{""C"": 0.1, ""gamma"": 0.0001}",0.1693634415426644,0.21965317919075145,257.2
+SVM,"{""C"": 1, ""gamma"": ""scale""}",0.29883647948800185,0.4624277456647399,149.5
+SVM,"{""C"": 1, ""gamma"": 0.001}",0.2795352157292007,0.2774566473988439,184.1
+SVM,"{""C"": 1, ""gamma"": 0.0001}",0.3004222329308573,0.4797687861271676,174.9
+SVM,"{""C"": 10, ""gamma"": ""scale""}",0.2733182625342575,0.1907514450867052,142.5
+SVM,"{""C"": 10, ""gamma"": 0.001}",0.2501499077262353,0.08092485549132948,182.4
+SVM,"{""C"": 10, ""gamma"": 0.0001}",0.28781145396321806,0.5260115606936416,105.8
+SVM,"{""C"": 100, ""gamma"": ""scale""}",0.27170710904493556,0.1907514450867052,155.7
+SVM,"{""C"": 100, ""gamma"": 0.001}",0.2501499077262353,0.08092485549132948,186.8
+SVM,"{""C"": 100, ""gamma"": 0.0001}",0.2799176510363752,0.2947976878612717,87.0
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 1, ""class_weight"": ""balanced""}",0.15762756695269223,0.005780346820809248,113.0
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 1, ""class_weight"": ""balanced_subsample""}",0.15381482967315016,0.0,114.3
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 5, ""class_weight"": ""balanced""}",0.2978335215268309,0.1676300578034682,99.9
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 5, ""class_weight"": ""balanced_subsample""}",0.2926514048191011,0.16184971098265896,105.2
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 10, ""class_weight"": ""balanced""}",0.33637657060518084,0.43352601156069365,88.5
+Random Forest,"{""max_depth"": null, ""min_samples_leaf"": 10, ""class_weight"": ""balanced_subsample""}",0.3311623839774492,0.4277456647398844,91.4
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 1, ""class_weight"": ""balanced""}",0.3432430366613709,0.3872832369942196,84.5
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 1, ""class_weight"": ""balanced_subsample""}",0.3538743236879041,0.4277456647398844,87.8
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 5, ""class_weight"": ""balanced""}",0.35653066210593437,0.5260115606936416,82.9
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 5, ""class_weight"": ""balanced_subsample""}",0.35874038031922656,0.5375722543352601,82.9
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 10, ""class_weight"": ""balanced""}",0.33958789625363056,0.5549132947976878,79.6
+Random Forest,"{""max_depth"": 10, ""min_samples_leaf"": 10, ""class_weight"": ""balanced_subsample""}",0.3360614342854126,0.5722543352601156,79.9
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 1, ""class_weight"": ""balanced""}",0.163585237569909,0.011560693641618497,111.0
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 1, ""class_weight"": ""balanced_subsample""}",0.1606126010701115,0.011560693641618497,111.3
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 5, ""class_weight"": ""balanced""}",0.2980367418743633,0.1791907514450867,99.8
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 5, ""class_weight"": ""balanced_subsample""}",0.29887637443410525,0.20809248554913296,99.9
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 10, ""class_weight"": ""balanced""}",0.3297500707408429,0.41040462427745666,90.7
+Random Forest,"{""max_depth"": 20, ""min_samples_leaf"": 10, ""class_weight"": ""balanced_subsample""}",0.3288307313675691,0.4277456647398844,88.6

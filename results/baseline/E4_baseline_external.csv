@@ -1,0 +1,9 @@
+﻿資料集,模型,訓練切分,外部資料群組,影像數,計算類別數,各類影像數,F1-score (macro),Balanced Accuracy,Melanoma Recall
+正式,SVM,lesion,全部,1704,7,akiec:51、bcc:108、bkl:239、df:45、mel:192、nv:1031、vasc:38,0.287 ± 0.005,0.346 ± 0.009,0.428 ± 0.031
+正式,SVM,image,全部,1704,7,akiec:51、bcc:108、bkl:239、df:45、mel:192、nv:1031、vasc:38,0.291 ± 0.005,0.350 ± 0.010,0.439 ± 0.020
+正式,Random Forest,lesion,全部,1704,7,akiec:51、bcc:108、bkl:239、df:45、mel:192、nv:1031、vasc:38,0.317 ± 0.002,0.338 ± 0.005,0.475 ± 0.024
+正式,Random Forest,image,全部,1704,7,akiec:51、bcc:108、bkl:239、df:45、mel:192、nv:1031、vasc:38,0.319 ± 0.005,0.339 ± 0.007,0.466 ± 0.013
+敏感度分析,SVM,lesion,全部,1595,7,akiec:51、bcc:108、bkl:234、df:43、mel:190、nv:935、vasc:34,0.289 ± 0.005,0.345 ± 0.008,0.433 ± 0.031
+敏感度分析,SVM,image,全部,1595,7,akiec:51、bcc:108、bkl:234、df:43、mel:190、nv:935、vasc:34,0.292 ± 0.006,0.346 ± 0.010,0.442 ± 0.019
+敏感度分析,Random Forest,lesion,全部,1595,7,akiec:51、bcc:108、bkl:234、df:43、mel:190、nv:935、vasc:34,0.316 ± 0.002,0.337 ± 0.005,0.480 ± 0.024
+敏感度分析,Random Forest,image,全部,1595,7,akiec:51、bcc:108、bkl:234、df:43、mel:190、nv:935、vasc:34,0.318 ± 0.005,0.338 ± 0.007,0.471 ± 0.013

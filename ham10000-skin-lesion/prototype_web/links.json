@@ -1,0 +1,11 @@
+{
+  "_說明": "衛教連結由熊婉其整理，組長與 Claude 核對網址後填入。url 留空時，網頁會顯示「連結整理中」。",
+  "general": {"title": "", "source": "", "url": ""},
+  "akiec": [{"title": "", "source": "", "url": ""}],
+  "bcc":   [{"title": "", "source": "", "url": ""}],
+  "bkl":   [{"title": "", "source": "", "url": ""}],
+  "df":    [{"title": "", "source": "", "url": ""}],
+  "mel":   [{"title": "", "source": "", "url": ""}],
+  "nv":    [{"title": "", "source": "", "url": ""}],
+  "vasc":  [{"title": "", "source": "", "url": ""}]
+}

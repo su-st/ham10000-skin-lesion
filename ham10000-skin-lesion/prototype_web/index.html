@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>皮膚鏡影像病灶分類原型</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --ink: #1d2330; --muted: #5b6475; --line: #dfe3ea;
+    --accent: #2f5fb3; --accent-ink: #ffffff; --bar: #2f5fb3; --bar-bg: #e8edf6;
+    --warn-bg: #fff4e5; --warn-line: #f0a33a; --warn-ink: #7a4200;
+    --ok-bg: #eef5ee; --ok-line: #8bb88b; --ok-ink: #24502a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, sans-serif; line-height: 1.6; }
+  main { max-width: 1080px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 1.7rem; margin: 0 0 12px; }
+  h2 { font-size: 1.25rem; margin: 32px 0 12px; }
+  .notice { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; }
+  .notice p { margin: 4px 0; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+  .card-title { font-size: .9rem; color: var(--muted); margin: 0 0 10px; }
+  #drop { border: 2px dashed var(--line); border-radius: 8px; min-height: 300px; display: flex;
+    align-items: center; justify-content: center; text-align: center; cursor: pointer; color: var(--muted);
+    overflow: hidden; background: #fbfcfd; }
+  #drop.over { border-color: var(--accent); background: #eef3fb; }
+  #drop img { width: 100%; height: 360px; object-fit: contain; display: block; }
+  #file { display: none; }
+  button { width: 100%; margin-top: 12px; padding: 12px; font-size: 1.05rem; font-weight: 600; border: 0;
+    border-radius: 8px; background: var(--accent); color: var(--accent-ink); cursor: pointer; font-family: inherit; }
+  button:disabled { background: #a9b6cc; cursor: not-allowed; }
+  #status { margin-top: 10px; color: var(--muted); font-size: .95rem; min-height: 1.6em; }
+  #top { font-size: 1.6rem; font-weight: 700; text-align: center; margin: 4px 0 14px; min-height: 2.2rem; }
+  .row { margin: 8px 0; }
+  .row-head { display: flex; justify-content: space-between; font-size: .95rem; }
+  .bar { height: 8px; background: var(--bar-bg); border-radius: 4px; overflow: hidden; margin-top: 3px; }
+  .bar > span { display: block; height: 100%; background: var(--bar); }
+  .placeholder { color: var(--muted); text-align: center; padding: 40px 0; }
+  .alert { border-radius: 8px; padding: 12px 16px; margin-top: 16px; border: 1px solid; }
+  .alert h3 { margin: 0 0 6px; font-size: 1.1rem; }
+  .alert p { margin: 0; }
+  .alert.warn { background: var(--warn-bg); border-color: var(--warn-line); color: var(--warn-ink); }
+  .alert.ok { background: var(--ok-bg); border-color: var(--ok-line); color: var(--ok-ink); }
+  .cams { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+  @media (max-width: 760px) { .cams { grid-template-columns: 1fr; } }
+  .cams figure { margin: 0; }
+  .cams canvas { width: 100%; height: auto; border-radius: 6px; display: block; }
+  .cams figcaption { font-size: .9rem; color: var(--muted); margin-bottom: 8px; }
+  .hint { color: var(--muted); font-size: .95rem; margin-top: 12px; }
+  .edu ul { margin: 4px 0 12px; padding-left: 22px; }
+  .edu a { color: var(--accent); }
+  footer { margin-top: 36px; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>皮膚鏡影像病灶分類原型</h1>
+  <div class="notice">
+    <p><strong>本系統僅供數位醫學與影像導論課程展示，不能取代醫師診斷。</strong>模型以 HAM10000 皮膚鏡影像訓練，只適用皮膚鏡影像，一般手機拍攝的照片結果沒有參考價值。模型會判斷錯誤，測試資料中約三分之一的黑色素瘤未被判為黑色素瘤。</p>
+    <p>上傳的影像只在您的瀏覽器中處理，不會傳送到任何伺服器，系統也不儲存任何影像。</p>
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <p class="card-title">上傳皮膚鏡影像（jpg 或 png）</p>
+      <label id="drop" for="file"><span id="drop-text">點這裡選擇影像，或把影像拖曳到這裡</span></label>
+      <input id="file" type="file" accept="image/jpeg,image/png,image/*">
+      <button id="run" disabled>模型載入中</button>
+      <div id="status">模型載入中（約 16 MB，第一次開啟需要幾秒鐘）</div>
+    </section>
+    <section class="card">
+      <p class="card-title">七類預測機率</p>
+      <div id="top"></div>
+      <div id="bars"><div class="placeholder">上傳影像並按「開始分析」後，會顯示七類的預測機率。</div></div>
+      <div id="alert"></div>
+    </section>
+  </div>
+
+  <div class="cams">
+    <figure id="fig-top" hidden><figcaption id="cap-top"></figcaption><canvas id="cam-top" width="448" height="448"></canvas></figure>
+    <figure id="fig-mel" hidden><figcaption>Grad-CAM 熱圖：模型判斷為「黑色素瘤」時注意的區域</figcaption><canvas id="cam-mel" width="448" height="448"></canvas></figure>
+  </div>
+  <p class="hint">熱圖越紅的區域，代表模型判斷時越依賴該區域。熱圖只能呈現模型注意的位置，不代表模型理解了病灶特徵。</p>
+
+  <h2>衛教資源</h2>
+  <div id="edu" class="edu"><p>上傳影像並分析後，會顯示對應類別的衛教連結。</p></div>
+
+  <footer>
+    模型：EfficientNet-B0（類別權重＋資料增強，依病灶切分，種子 42），以 HAM10000 訓練。黑色素瘤提示門檻 0.16，為驗證集上 F2 分數最大的閾值。<br>
+    數位醫學與影像導論期末專題。
+  </footer>
+</main>
+
+<script src="ort.wasm.min.js"></script>
+<script src="lesion.js"></script>
+<script>
+(function () {
+  'use strict';
+  // 部署設定：Hugging Face 上的 Space 名稱。若靜態網址讀不到大檔案，改從這裡下載
+  var SPACE_REPO = 'JUNG1127/skin-lesion-demo';
+  var ORT_CDN = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/';
+  var IMG_SIZE = 224, CAM_HW = 7, OUT_SIZE = 448, MEL_THRESHOLD = 0.16;
+  var CLASS_ORDER = Lesion.CLASS_ORDER, MEL = CLASS_ORDER.indexOf('mel');
+  var CLASS_ZH = { akiec: '光化性角化症與表皮內癌', bcc: '基底細胞癌', bkl: '良性角化病灶', df: '皮膚纖維瘤',
+                   mel: '黑色素瘤', nv: '黑色素細胞痣', vasc: '血管病灶' };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var session = null, links = {}, current = null;
+
+  function setStatus(t) { $('status').textContent = t; }
+
+  async function fetchBig(localUrl, remoteUrl) {
+    try {
+      var r = await fetch(localUrl);
+      if (r.ok) { var b = await r.arrayBuffer(); if (b.byteLength > 1000000) return b; }
+    } catch (e) { /* 改用備援網址 */ }
+    var r2 = await fetch(remoteUrl);
+    if (!r2.ok) throw new Error('下載失敗：' + remoteUrl);
+    return await r2.arrayBuffer();
+  }
+
+  async function wasmBase() {
+    try {
+      var r = await fetch('ort-wasm-simd-threaded.wasm', { method: 'HEAD' });
+      var n = Number(r.headers.get('content-length') || 0);
+      if (r.ok && (n === 0 || n > 1000000)) return './';
+    } catch (e) { /* 改用 CDN */ }
+    return ORT_CDN;
+  }
+
+  async function init() {
+    try {
+      try { links = await (await fetch('links.json', { cache: 'no-store' })).json(); } catch (e) { links = {}; }
+      ort.env.wasm.numThreads = 1;
+      ort.env.wasm.wasmPaths = await wasmBase();
+      var model = await fetchBig('model.onnx', 'https://huggingface.co/spaces/' + SPACE_REPO + '/resolve/main/model.onnx');
+      session = await ort.InferenceSession.create(model, { executionProviders: ['wasm'] });
+      // 暖機，讓顯示的推論時間反映穩定狀態
+      await session.run({ input: new ort.Tensor('float32', new Float32Array(3 * IMG_SIZE * IMG_SIZE), [1, 3, IMG_SIZE, IMG_SIZE]) });
+      setStatus('模型已就緒，請上傳影像。');
+      $('run').textContent = '開始分析';
+      $('run').disabled = !current;
+    } catch (e) {
+      console.error(e);
+      setStatus('模型載入失敗，請重新整理頁面再試一次。');
+      $('run').textContent = '模型載入失敗';
+    }
+  }
+
+  async function decode(file) {
+    var bmp;
+    try { bmp = await createImageBitmap(file, { imageOrientation: 'from-image', colorSpaceConversion: 'none' }); }
+    catch (e) {
+      bmp = await new Promise(function (res, rej) {
+        var im = new Image(); im.onload = function () { res(im); }; im.onerror = rej; im.src = URL.createObjectURL(file);
+      });
+    }
+    var w = bmp.width, h = bmp.height, c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    var ctx = c.getContext('2d', { willReadFrequently: true });
+    ctx.drawImage(bmp, 0, 0);
+    return { rgb: Lesion.rgbaToRgb(ctx.getImageData(0, 0, w, h).data, w * h), w: w, h: h };
+  }
+
+  function choose(file) {
+    if (!file) return;
+    current = file;
+    var img = document.createElement('img');
+    img.alt = '上傳的影像'; img.src = URL.createObjectURL(file);
+    $('drop').replaceChildren(img);
+    if (session) { $('run').disabled = false; setStatus('影像已選擇，請按「開始分析」。'); }
+  }
+
+  function draw(canvas, rgb) {
+    var ctx = canvas.getContext('2d'), im = ctx.createImageData(OUT_SIZE, OUT_SIZE);
+    for (var i = 0; i < OUT_SIZE * OUT_SIZE; i++) {
+      im.data[i * 4] = rgb[i * 3]; im.data[i * 4 + 1] = rgb[i * 3 + 1]; im.data[i * 4 + 2] = rgb[i * 3 + 2]; im.data[i * 4 + 3] = 255;
+    }
+    ctx.putImageData(im, 0, 0);
+  }
+
+  function linkItem(it) {
+    var li = document.createElement('li');
+    if (!it || !it.url) { li.textContent = '連結整理中'; return li; }
+    var a = document.createElement('a');
+    a.href = it.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; a.textContent = it.title || it.url;
+    li.appendChild(a);
+    if (it.source) li.appendChild(document.createTextNode('（' + it.source + '）'));
+    return li;
+  }
+
+  function renderEdu(cls) {
+    var box = $('edu'); box.replaceChildren();
+    var t1 = document.createElement('p'); t1.innerHTML = '<strong></strong>'; t1.firstChild.textContent = CLASS_ZH[cls];
+    var u1 = document.createElement('ul'); (links[cls] || [{}]).forEach(function (it) { u1.appendChild(linkItem(it)); });
+    var t2 = document.createElement('p'); t2.innerHTML = '<strong>皮膚自我檢查（不論預測結果都請參考）</strong>';
+    var u2 = document.createElement('ul'); u2.appendChild(linkItem(links.general));
+    var p = document.createElement('p'); p.textContent = '不論系統預測為何，若病灶出現不對稱、邊緣不規則、顏色不均、直徑變大或持續變化，請儘速就醫。';
+    box.append(t1, u1, t2, u2, p);
+  }
+
+  function renderProbs(probs, top) {
+    $('top').textContent = CLASS_ZH[CLASS_ORDER[top]] + '（' + CLASS_ORDER[top] + '）';
+    var order = CLASS_ORDER.map(function (_, i) { return i; }).sort(function (a, b) { return probs[b] - probs[a]; });
+    var bars = $('bars'); bars.replaceChildren();
+    order.forEach(function (i) {
+      var row = document.createElement('div'); row.className = 'row';
+      var head = document.createElement('div'); head.className = 'row-head';
+      var name = document.createElement('span'); name.textContent = CLASS_ZH[CLASS_ORDER[i]] + '（' + CLASS_ORDER[i] + '）';
+      var val = document.createElement('span'); val.textContent = Math.round(probs[i] * 100) + '%';
+      val.dataset.prob = probs[i].toFixed(6); val.dataset.cls = CLASS_ORDER[i];
+      head.append(name, val);
+      var bar = document.createElement('div'); bar.className = 'bar';
+      var fill = document.createElement('span'); fill.style.width = (probs[i] * 100).toFixed(1) + '%';
+      bar.appendChild(fill); row.append(head, bar); bars.appendChild(row);
+    });
+  }
+
+  function renderAlert(pMel) {
+    var box = $('alert'), d = document.createElement('div'), h = document.createElement('h3'), p = document.createElement('p');
+    if (pMel >= MEL_THRESHOLD) {
+      d.className = 'alert warn'; h.textContent = '⚠️ 建議就醫進一步檢查';
+      p.textContent = '黑色素瘤機率為 ' + pMel.toFixed(2) + '，已達本系統的提示門檻（' + MEL_THRESHOLD + '）。門檻刻意設得較低，寧可多提醒，也不要漏掉黑色素瘤，因此即使機率最高的不是黑色素瘤，仍會出現此提示。';
+    } else {
+      d.className = 'alert ok'; h.textContent = '未達黑色素瘤提示門檻';
+      p.textContent = '黑色素瘤機率為 ' + pMel.toFixed(2) + '，未達本系統的提示門檻（' + MEL_THRESHOLD + '）。這不代表病灶一定是良性，仍請依下方的自我檢查原則留意皮膚變化。';
+    }
+    d.append(h, p); box.replaceChildren(d);
+  }
+
+  async function analyze() {
+    if (!session || !current) return;
+    $('run').disabled = true; setStatus('分析中…');
+    try {
+      var img = await decode(current);
+      var rgb = Lesion.resize(img.rgb, img.w, img.h, 3, IMG_SIZE, IMG_SIZE);
+      var x = new ort.Tensor('float32', Lesion.toInput(rgb, IMG_SIZE), [1, 3, IMG_SIZE, IMG_SIZE]);
+      var t0 = performance.now();
+      var out = await session.run({ input: x });
+      var inferMs = performance.now() - t0;
+      var probs = Array.from(out.probs.data), cams = out.cams.data;
+      var top = probs.indexOf(Math.max.apply(null, probs)), pMel = probs[MEL];
+
+      var t1 = performance.now();
+      var showMel = pMel >= MEL_THRESHOLD && top !== MEL;
+      draw($('cam-top'), Lesion.overlay(rgb, Lesion.camMap(cams, top, CAM_HW, IMG_SIZE), IMG_SIZE, OUT_SIZE));
+      if (showMel) draw($('cam-mel'), Lesion.overlay(rgb, Lesion.camMap(cams, MEL, CAM_HW, IMG_SIZE), IMG_SIZE, OUT_SIZE));
+      var camMs = performance.now() - t1;
+
+      renderProbs(probs, top); renderAlert(pMel); renderEdu(CLASS_ORDER[top]);
+      $('cap-top').textContent = 'Grad-CAM 熱圖：模型判斷為「' + CLASS_ZH[CLASS_ORDER[top]] + '」時注意的區域';
+      $('fig-top').hidden = false; $('fig-mel').hidden = !showMel;
+      setStatus('推論時間：' + Math.round(inferMs) + ' 毫秒（模型預測），熱圖繪製：' + Math.round(camMs) + ' 毫秒，於您的瀏覽器執行。');
+      document.body.dataset.done = String(Date.now());
+    } catch (e) {
+      console.error(e);
+      setStatus('無法讀取這張影像，請改用 jpg 或 png 格式。');
+    }
+    $('run').disabled = false;
+  }
+
+  $('file').addEventListener('change', function (e) { choose(e.target.files[0]); });
+  var drop = $('drop');
+  ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function (e) { choose(e.dataTransfer.files[0]); });
+  $('run').addEventListener('click', analyze);
+  init();
+})();
+</script>
+</body>
+</html>

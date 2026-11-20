@@ -1,0 +1,12 @@
+# 影像有授權限制、快取與權重檔太大，不放入儲存庫
+*.jpg
+*.jpeg
+*.npy
+*.npz
+*.pt
+cache/
+models/
+predictions/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store

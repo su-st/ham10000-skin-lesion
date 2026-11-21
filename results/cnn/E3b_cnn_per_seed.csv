@@ -1,0 +1,46 @@
+﻿模型,群組,種子,指標,影像數,計算類別數,計算類別,A,B,C
+EfficientNet-B0,全部,42,F1-score (macro),1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7633258122818621,0.6430710787325966,0.7898739523052216
+EfficientNet-B0,全部,42,Melanoma Recall,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7365269461077845,0.7425149700598802,0.7604790419161677
+EfficientNet-B0,全部,42,Accuracy,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8263473053892215,0.7544910179640718,0.8456420492348636
+EfficientNet-B0,病灶出現過,42,F1-score (macro),550,7,akiec、bcc、bkl、df、mel、nv、vasc,0.74937564172956,0.5535386133130312,0.8071618361322371
+EfficientNet-B0,病灶出現過,42,Melanoma Recall,550,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7870370370370371,0.7870370370370371,0.8055555555555556
+EfficientNet-B0,病灶出現過,42,Accuracy,550,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7581818181818182,0.62,0.7818181818181819
+EfficientNet-B0,病灶未出現過,42,F1-score (macro),953,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7579006368681809,0.69320139444259,0.7606238662197061
+EfficientNet-B0,病灶未出現過,42,Melanoma Recall,953,7,akiec、bcc、bkl、df、mel、nv、vasc,0.6440677966101694,0.6610169491525424,0.6779661016949152
+EfficientNet-B0,病灶未出現過,42,Accuracy,953,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8656873032528857,0.832109129066107,0.8824763903462749
+EfficientNet-B0,全部,43,F1-score (macro),1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7799184396936749,0.6754079420854856,0.7917237254410834
+EfficientNet-B0,全部,43,Melanoma Recall,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.688622754491018,0.718562874251497,0.7485029940119761
+EfficientNet-B0,全部,43,Accuracy,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8483033932135728,0.7598137059214903,0.8489687292082502
+EfficientNet-B0,病灶出現過,43,F1-score (macro),540,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8501991573822618,0.6379104141952335,0.8410107160740559
+EfficientNet-B0,病灶出現過,43,Melanoma Recall,540,7,akiec、bcc、bkl、df、mel、nv、vasc,0.826530612244898,0.7653061224489796,0.8877551020408163
+EfficientNet-B0,病灶出現過,43,Accuracy,540,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8055555555555556,0.6296296296296297,0.8166666666666667
+EfficientNet-B0,病灶未出現過,43,F1-score (macro),963,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7009910794867864,0.6788250711798272,0.7268685016874151
+EfficientNet-B0,病灶未出現過,43,Melanoma Recall,963,7,akiec、bcc、bkl、df、mel、nv、vasc,0.4927536231884058,0.6521739130434783,0.5507246376811594
+EfficientNet-B0,病灶未出現過,43,Accuracy,963,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8722741433021807,0.8328141225337488,0.8670820353063343
+EfficientNet-B0,全部,44,F1-score (macro),1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7600678534246885,0.6753027966498996,0.7587965198379817
+EfficientNet-B0,全部,44,Melanoma Recall,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7305389221556886,0.5868263473053892,0.6646706586826348
+EfficientNet-B0,全部,44,Accuracy,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.83166999334664,0.7757817697937458,0.8389886892880905
+EfficientNet-B0,病灶出現過,44,F1-score (macro),521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7623196589534154,0.6134242075395328,0.7648239583390216
+EfficientNet-B0,病灶出現過,44,Melanoma Recall,521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7578947368421053,0.5473684210526316,0.6736842105263158
+EfficientNet-B0,病灶出現過,44,Accuracy,521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.763915547024952,0.6257197696737045,0.7658349328214972
+EfficientNet-B0,病灶未出現過,44,F1-score (macro),982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7437253963033917,0.7205949829683927,0.7422748402686462
+EfficientNet-B0,病灶未出現過,44,Melanoma Recall,982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.6944444444444444,0.6388888888888888,0.6527777777777778
+EfficientNet-B0,病灶未出現過,44,Accuracy,982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8676171079429735,0.8553971486761711,0.8778004073319755
+EfficientNet-B0,全部,45,F1-score (macro),1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7620620177895719,0.6993312079159121,0.7056023795874838
+EfficientNet-B0,全部,45,Melanoma Recall,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.718562874251497,0.6526946107784432,0.7664670658682635
+EfficientNet-B0,全部,45,Accuracy,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8389886892880905,0.8097139055222887,0.7717897538256819
+EfficientNet-B0,病灶出現過,45,F1-score (macro),577,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7855636419016656,0.6377632569243138,0.672362758664768
+EfficientNet-B0,病灶出現過,45,Melanoma Recall,577,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7304347826086957,0.6608695652173913,0.7913043478260869
+EfficientNet-B0,病灶出現過,45,Accuracy,577,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7764298093587522,0.7157712305025996,0.6551126516464472
+EfficientNet-B0,病灶未出現過,45,F1-score (macro),926,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7356057540162821,0.727912126729442,0.714237618404166
+EfficientNet-B0,病灶未出現過,45,Melanoma Recall,926,7,akiec、bcc、bkl、df、mel、nv、vasc,0.6923076923076923,0.6346153846153846,0.7115384615384616
+EfficientNet-B0,病灶未出現過,45,Accuracy,926,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8779697624190065,0.8682505399568035,0.8444924406047516
+EfficientNet-B0,全部,46,F1-score (macro),1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7743450521668596,0.7002454730564006,0.7035714627394546
+EfficientNet-B0,全部,46,Melanoma Recall,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.688622754491018,0.6946107784431138,0.8383233532934131
+EfficientNet-B0,全部,46,Accuracy,1503,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8383233532934131,0.8130405854956753,0.8003992015968064
+EfficientNet-B0,病灶出現過,46,F1-score (macro),521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8075969544633281,0.6603457538811753,0.7347536613751792
+EfficientNet-B0,病灶出現過,46,Melanoma Recall,521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7142857142857143,0.6836734693877551,0.8469387755102041
+EfficientNet-B0,病灶出現過,46,Accuracy,521,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7773512476007678,0.6890595009596929,0.7159309021113244
+EfficientNet-B0,病灶未出現過,46,F1-score (macro),982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.7309337868170384,0.7341178217169207,0.6576635883729779
+EfficientNet-B0,病灶未出現過,46,Melanoma Recall,982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.6521739130434783,0.7101449275362319,0.8260869565217391
+EfficientNet-B0,病灶未出現過,46,Accuracy,982,7,akiec、bcc、bkl、df、mel、nv、vasc,0.8706720977596741,0.8788187372708758,0.845213849287169

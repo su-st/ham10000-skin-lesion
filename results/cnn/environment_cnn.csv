@@ -1,0 +1,7 @@
+﻿,規格
+執行平台,Google Colab
+硬體,Tesla T4
+程式語言,Python 3.13.16
+主要套件與版本,PyTorch 2.14.1+cu130、torchvision 0.29.1+cu130、scikit-learn 1.6.1、NumPy 2.4.6、pandas 2.2.3
+隨機種子,42、43、44、45、46
+正式回合上限,20

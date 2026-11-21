@@ -33,6 +33,10 @@
   button { width: 100%; margin-top: 12px; padding: 12px; font-size: 1.05rem; font-weight: 600; border: 0;
     border-radius: 8px; background: var(--accent); color: var(--accent-ink); cursor: pointer; font-family: inherit; }
   button:disabled { background: #a9b6cc; cursor: not-allowed; }
+  .actions { display: flex; gap: 12px; }
+  .actions button { flex: 1; }
+  button.secondary { background: #fff; color: var(--accent); border: 1.5px solid var(--accent); }
+  button.secondary:disabled { background: #fff; color: #a9b6cc; border-color: #a9b6cc; }
   #status { margin-top: 10px; color: var(--muted); font-size: .95rem; min-height: 1.6em; }
   #top { font-size: 1.6rem; font-weight: 700; text-align: center; margin: 4px 0 14px; min-height: 2.2rem; }
   .row { margin: 8px 0; }
@@ -69,7 +73,10 @@
       <p class="card-title">上傳皮膚鏡影像（jpg 或 png）</p>
       <label id="drop" for="file"><span id="drop-text">點這裡選擇影像，或把影像拖曳到這裡</span></label>
       <input id="file" type="file" accept="image/jpeg,image/png,image/*">
-      <button id="run" disabled>模型載入中</button>
+      <div class="actions">
+        <button id="reselect" class="secondary" hidden>重新選擇影像</button>
+        <button id="run" disabled>模型載入中</button>
+      </div>
       <div id="status">模型載入中（約 16 MB，第一次開啟需要幾秒鐘）</div>
     </section>
     <section class="card">
@@ -166,12 +173,24 @@
     return { rgb: Lesion.rgbaToRgb(ctx.getImageData(0, 0, w, h).data, w * h), w: w, h: h };
   }
 
+  // 換影像時清掉上一張的結果，避免新影像旁邊顯示舊結果
+  function resetResults() {
+    $('top').textContent = '';
+    $('bars').innerHTML = '<div class="placeholder">按「開始分析」後，會顯示這張影像的七類預測機率。</div>';
+    $('alert').replaceChildren();
+    $('fig-top').hidden = true; $('fig-mel').hidden = true;
+    $('edu').innerHTML = '<p>上傳影像並分析後，會顯示對應類別的衛教連結。</p>';
+  }
+
   function choose(file) {
     if (!file) return;
     current = file;
     var img = document.createElement('img');
     img.alt = '上傳的影像'; img.src = URL.createObjectURL(file);
     $('drop').replaceChildren(img);
+    $('file').value = '';   // 讓同一個檔案再選一次也能觸發
+    $('reselect').hidden = false;
+    resetResults();
     if (session) { $('run').disabled = false; setStatus('影像已選擇，請按「開始分析」。'); }
   }
 
@@ -234,7 +253,7 @@
 
   async function analyze() {
     if (!session || !current) return;
-    $('run').disabled = true; setStatus('分析中…');
+    $('run').disabled = true; $('reselect').disabled = true; setStatus('分析中…');
     try {
       var img = await decode(current);
       var rgb = Lesion.resize(img.rgb, img.w, img.h, 3, IMG_SIZE, IMG_SIZE);
@@ -260,7 +279,7 @@
       console.error(e);
       setStatus('無法讀取這張影像，請改用 jpg 或 png 格式。');
     }
-    $('run').disabled = false;
+    $('run').disabled = false; $('reselect').disabled = false;
   }
 
   $('file').addEventListener('change', function (e) { choose(e.target.files[0]); });
@@ -269,6 +288,7 @@
   ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); }); });
   drop.addEventListener('drop', function (e) { choose(e.dataTransfer.files[0]); });
   $('run').addEventListener('click', analyze);
+  $('reselect').addEventListener('click', function () { $('file').click(); });
   init();
 })();
 </script>

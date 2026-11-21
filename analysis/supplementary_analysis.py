@@ -163,4 +163,20 @@ b = pd.DataFrame(rows); save(b, 'R2_melanoma_pred_by_age_per_seed.csv', index=Fa
 bs = b.groupby('組別', sort=False).sum(numeric_only=True).drop(columns='種子')
 bs['判為痣的比例'] = (bs['判為nv'] / bs['黑色素瘤張數']).round(3)
 save(bs, 'R2_melanoma_pred_by_age_pooled.csv')
+# S6（2026-11-20 追加）：E2 五種設定的各類別召回率，回答 RQ2 對黑色素瘤以外少數類別的影響，只作描述
+from sklearn.metrics import recall_score
+CFGS = [('none', '不處理'), ('cw', '類別權重'), ('aug', '資料增強'), ('cw-aug', '類別權重＋資料增強（提出方法）'), ('os-aug', '過採樣＋資料增強')]
+rr = []
+for cfg, lab in CFGS:
+    for s in SEEDS:
+        z = np.load(os.path.join(CNN_DIR, 'predictions', f'prob__{cfg}__lesion__seed{s}.npz'))
+        ids = z['test_image_id'].astype(str); p = z['test'].argmax(1)
+        y = np.array([CLS.index(d) for d in sa.loc[ids, 'dx']])
+        rr.append({'設定': lab, '種子': s, **dict(zip(CLS, recall_score(y, p, labels=L, average=None, zero_division=0)))})
+rr = pd.DataFrame(rr)
+out6 = rr.groupby('設定', sort=False)[CLS].agg(ms).reset_index()
+base = rr[rr['設定'] == '不處理'].set_index('種子')[CLS]; prop = rr[rr['設定'] == '類別權重＋資料增強（提出方法）'].set_index('種子')[CLS]
+dd = prop - base
+out6.loc[len(out6)] = ['提出方法 − 不處理（配對差值）'] + [ms(dd[c]) + f'（{int((dd[c] > 0).sum())}／5）' for c in CLS]
+save(out6, 'S6_per_class_recall_E2.csv', index=False)
 print('完成，輸出於', OUT)

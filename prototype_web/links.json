@@ -1,11 +1,106 @@
 {
-  "_說明": "衛教連結由熊婉其整理，組長與 Claude 核對網址後填入。url 留空時，網頁會顯示「連結整理中」。",
-  "general": {"title": "", "source": "", "url": ""},
-  "akiec": [{"title": "", "source": "", "url": ""}],
-  "bcc":   [{"title": "", "source": "", "url": ""}],
-  "bkl":   [{"title": "", "source": "", "url": ""}],
-  "df":    [{"title": "", "source": "", "url": ""}],
-  "mel":   [{"title": "", "source": "", "url": ""}],
-  "nv":    [{"title": "", "source": "", "url": ""}],
-  "vasc":  [{"title": "", "source": "", "url": ""}]
+ "notes": {
+  "akiec": "此類別包含光化性角化症與表皮內癌（Bowen 氏病），模型無法區分是哪一種，以下分別提供連結。",
+  "bkl": "此類別包含脂漏性角化症、日光性黑斑與扁平苔癬樣角化症，模型無法區分是哪一種，以下分別提供連結。",
+  "vasc": "此類別包含櫻桃血管瘤、血管角化瘤與化膿性肉芽腫等血管病灶，模型無法區分是哪一種，以下分別提供連結。"
+ },
+ "general": {
+  "title": "ABCDE 自我檢查的方法",
+  "source": "成大醫院皮膚部",
+  "url": "https://derm.hosp.ncku.edu.tw/var/file/91/1091/img/3920/416215643.pdf"
+ },
+ "akiec": [
+  {
+   "title": "光化性角化症：5 facts you should know about precancerous skin growths",
+   "source": "美國皮膚科學會（AAD），英文",
+   "url": "https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-facts-about-precancerous-skin-growths"
+  },
+  {
+   "title": "表皮內癌（Bowen 氏病）：Intraepidermal squamous cell carcinoma",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/intraepidermal-squamous-cell-carcinoma"
+  }
+ ],
+ "bcc": [
+  {
+   "title": "皮膚癌（含基底細胞癌與 ABCDE 自我檢查）",
+   "source": "國泰綜合醫院",
+   "url": "https://www.cgh.org.tw/ec99/rwd1320/category.asp?category_id=955"
+  },
+  {
+   "title": "Basal cell carcinoma: From symptoms to treatments",
+   "source": "美國皮膚科學會（AAD），英文",
+   "url": "https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma"
+  }
+ ],
+ "bkl": [
+  {
+   "title": "曬斑與脂漏性角化症：別讓自己不開心－如何去除惱人的老人斑",
+   "source": "臺大醫院健康電子報",
+   "url": "https://epaper.ntuh.gov.tw/health/201507/project_1.html"
+  },
+  {
+   "title": "脂漏性角化症：Seborrhoeic keratoses",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/seborrhoeic-keratosis"
+  },
+  {
+   "title": "日光性黑斑：Solar lentigo",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/solar-lentigo"
+  },
+  {
+   "title": "扁平苔癬樣角化症：Lichenoid keratosis",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/lichenoid-keratosis"
+  }
+ ],
+ "df": [
+  {
+   "title": "Dermatofibroma (also known as histiocytoma)",
+   "source": "英國皮膚科醫學會（BAD），英文",
+   "url": "https://www.skinhealthinfo.org.uk/condition/dermatofibroma-also-known-as-histiocytoma/"
+  },
+  {
+   "title": "Dermatofibroma",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/dermatofibroma"
+  }
+ ],
+ "mel": [
+  {
+   "title": "皮膚癌簡介與治療進展",
+   "source": "臺北榮民總醫院皮膚部",
+   "url": "https://wd.vghtpe.gov.tw/derm/Fpage.action?fid=13865"
+  },
+  {
+   "title": "Melanoma",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/melanoma"
+  }
+ ],
+ "nv": [
+  {
+   "title": "Moles (melanocytic naevi)",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/melanocytic-naevus"
+  }
+ ],
+ "vasc": [
+  {
+   "title": "櫻桃血管瘤：皮膚長紅痣?!其實是「櫻桃血管瘤」",
+   "source": "成大醫院電子報",
+   "url": "https://newsletter.hosp.ncku.edu.tw/p/404-1049-199472.php?Lang=zh-tw"
+  },
+  {
+   "title": "血管角化瘤：Angiokeratoma",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/angiokeratoma"
+  },
+  {
+   "title": "化膿性肉芽腫：Pyogenic granuloma",
+   "source": "DermNet，英文",
+   "url": "https://dermnetnz.org/topics/pyogenic-granuloma"
+  }
+ ]
 }

@@ -57,6 +57,7 @@
   .hint { color: var(--muted); font-size: .95rem; margin-top: 12px; }
   .edu ul { margin: 4px 0 12px; padding-left: 22px; }
   .edu a { color: var(--accent); }
+  .edu-note { color: var(--muted); font-size: .95rem; margin: -4px 0 4px; }
   footer { margin-top: 36px; font-size: .85rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 12px; }
 </style>
 </head>
@@ -215,11 +216,13 @@
   function renderEdu(cls) {
     var box = $('edu'); box.replaceChildren();
     var t1 = document.createElement('p'); t1.innerHTML = '<strong></strong>'; t1.firstChild.textContent = CLASS_ZH[cls];
+    var note = links.notes && links.notes[cls] ? document.createElement('p') : null;
+    if (note) { note.className = 'edu-note'; note.textContent = links.notes[cls]; }
     var u1 = document.createElement('ul'); (links[cls] || [{}]).forEach(function (it) { u1.appendChild(linkItem(it)); });
     var t2 = document.createElement('p'); t2.innerHTML = '<strong>皮膚自我檢查（不論預測結果都請參考）</strong>';
     var u2 = document.createElement('ul'); u2.appendChild(linkItem(links.general));
     var p = document.createElement('p'); p.textContent = '不論系統預測為何，若病灶出現不對稱、邊緣不規則、顏色不均、直徑變大或持續變化，請儘速就醫。';
-    box.append(t1, u1, t2, u2, p);
+    box.append(t1); if (note) box.append(note); box.append(u1, t2, u2, p);
   }
 
   function renderProbs(probs, top) {
